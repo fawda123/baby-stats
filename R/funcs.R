@@ -131,8 +131,8 @@ chsum_plo <- function(dat){
     complete(Date, hr, fill = list(chg = 'No'))
   
   p <- ggplot(hrsum, aes(x = Date, y = hr, fill = chg)) +
-    geom_tile(color = 'black') +
-    scale_fill_manual(values = c('lightgrey', 'darkblue')) +
+    geom_tile() +
+    scale_fill_manual(values = c('white', 'darkblue')) +
     scale_y_discrete(expand = c(0,0)) + 
     scale_x_date(expand = c(0, 0), date_breaks = 'day', date_labels = '%m-%d') + 
     labs(
