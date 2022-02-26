@@ -21,7 +21,7 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v1
       - name: Install dependencies
         run: |
-          install.packages(c("dplyr", "tidyr", "lubridate", "here", "googledrive", "googlesheets4"))
+          install.packages(c("dplyr", "tidyr", "lubridate", "here", "googlesheets4"))
         shell: Rscript {0}
       - name: Build data
         run: Rscript -e 'source("R/dat_build.R")'

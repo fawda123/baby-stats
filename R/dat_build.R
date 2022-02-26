@@ -2,11 +2,9 @@ library(dplyr)
 library(tidyr)
 library(lubridate)
 library(here)
-library(googledrive)
 library(googlesheets4)
 
 # deauth all so it can build with gh actions
-drive_deauth()
 gs4_deauth()
 
 datraw <- read_sheet('1TOIquQt2WtM1FpQjc1uKp1GRdbYxen0zD9g78gYcmV8', sheet = 'Raw')
