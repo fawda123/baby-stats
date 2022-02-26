@@ -21,7 +21,7 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v1
       - name: Install R packages
         run: |
-          install.packages(c("dplyr", "tidyr", "lubridate", "here", "ggplot2", "reactable", "plotly", "knitr"))
+          install.packages(c("dplyr", "tidyr", "lubridate", "here", "ggplot2", "reactable", "plotly", "knitr", "rmarkdown"))
         shell: Rscript {0}
       - name: Render index
         run: Rscript -e 'rmarkdown::render("docs/report.Rmd")'
