@@ -1,0 +1,52 @@
+---
+title: "Feeding and changing summary"
+output: html_document
+---
+
+```{r setup, warning = F, message = F, echo = F}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(lubridate)
+library(reactable)
+library(plotly)
+library(knitr)
+library(here)
+
+opts_chunk$set(warning = FALSE, message = FALSE, echo = F)
+
+source(here('R/funcs.R'))
+
+load(file = here('data/dat.RData'))
+
+blddt <- Sys.time()
+blddt <- with_tz(blddt, tzone = 'EST')
+```
+
+These summaries show results to date for feeding and diaper change logs for JLB, born Feb. 17th, 2022 at 7:15 PM (Eastern Standard Time).  The results are updated automatically every 24 hours. Source data are available [here](https://docs.google.com/spreadsheets/d/1TOIquQt2WtM1FpQjc1uKp1GRdbYxen0zD9g78gYcmV8/edit?usp=sharing) and the source repository is available [here](https://github.com/fawda123/baby-stats).  
+
+Last report build: `r blddt`
+
+## Daily summaries
+
+```{r}
+daysum_tab(dat)
+```
+
+## Totals to date 
+
+```{r}
+totsum_tab(dat)
+```
+
+## Feedings by hour and duration
+
+```{r}
+fdsum_plo(dat)
+```
+
+# Changes by hour
+
+```{r}
+chsum_plo(dat)
+```
