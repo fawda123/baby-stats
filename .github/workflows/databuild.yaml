@@ -10,7 +10,7 @@ name: databuild
 jobs:
   render:
     name: databuild
-    runs-on: ubuntu-20.04
+    runs-on: macOS-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
