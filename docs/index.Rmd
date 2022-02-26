@@ -45,7 +45,7 @@ totsum_tab(dat)
 fdsum_plo(dat)
 ```
 
-# Changes by hour
+## Changes by hour
 
 ```{r}
 chsum_plo(dat)

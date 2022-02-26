@@ -3,7 +3,6 @@ library(tidyr)
 library(lubridate)
 library(here)
 library(googlesheets4)
-library(reactable)
 
 # deauth all so it can build with gh actions
 gs4_deauth()
