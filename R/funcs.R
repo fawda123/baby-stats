@@ -152,3 +152,75 @@ chsum_plo <- function(dat){
   return(out)
   
 }
+
+# https://statistic-on-air.blogspot.com/2011/09/implementation-of-cdc-growth-charts-in.html
+#Type:
+#	(1) wac36 	= Weight-for-age charts, birth to 36 months
+#	(2) lac36 	= Length-for-age charts, birth to 36 months
+#	(3) wlc 	= Weight-for-recumbent length charts, birth to 36 months
+#	(4) hac 	= Head circumference-for-age charts, birth to 36 months
+#	(5) wsc 	= Weight-for-stature charts
+#	(6) wac20 	= Weight-for-age charts, 2 to 20 years
+#	(7) lac20 	= Stature-for-age charts, 2 to 20 years
+#	(8) bac 	= BMI-for-age charts, 2 to 20 years
+#	(9) bmi.adv	= wac20 + lac20 + bac (for pdf export)
+
+MygrowthFun <- function( sex=c("m", "f"), 
+                         type=c("wac36", "lac36", "wlc", "hac", "wsc", "wac20", "lac20", "bac", "bmi.adv"), 
+                         path="./Growth/",
+                         name = NULL,
+                         surname = NULL,
+                         birth_date = NULL,
+                         mydataAA = NULL){
+  
+  if( sex == "m" ) {
+    switch(type,
+           "wac36"	= source(paste(path, "grafici1m.R", sep="")),
+           "lac36"	= source(paste(path, "grafici2m.R", sep="")),
+           "wlc"	= source(paste(path, "grafici3m.R", sep="")),
+           "hac"	= source(paste(path, "grafici4m.R", sep="")),
+           "wsc"	= source(paste(path, "grafici5m.R", sep="")),
+           "wac20"	= source(paste(path, "grafici6m.R", sep="")),
+           "lac20"	= source(paste(path, "grafici7m.R", sep="")),
+           "bac"	= source(paste(path, "grafici8m.R", sep=""))
+    )
+    if( type == "bmi.adv" ){
+      source(paste(path, "grafici6m.R", sep=""))
+      with(mydataAA, points(months, weight, type="l", col="red", lwd=2))
+      source(paste(path, "grafici7m.R", sep=""))
+      with(mydataAA, points(months, stature, type="l", col="red", lwd=2))
+      source(paste(path, "grafici8m.R", sep=""))
+      with(mydataAA, points(months, weight / (stature*stature/10000), type="l", col="red", lwd=2))
+    }
+  }
+  if( sex == "f" ) {
+    switch(type,
+           "wac36"	= source(paste(path, "grafici1f.R", sep="")),
+           "lac36"	= source(paste(path, "grafici2f.R", sep="")),
+           "wlc"	= source(paste(path, "grafici3f.R", sep="")),
+           "hac"	= source(paste(path, "grafici4f.R", sep="")),
+           "wsc"	= source(paste(path, "grafici5f.R", sep="")),
+           "wac20"	= source(paste(path, "grafici6f.R", sep="")),
+           "lac20"	= source(paste(path, "grafici7f.R", sep="")),
+           "bac"	= source(paste(path, "grafici8f.R", sep=""))
+    )
+    if( type == "bmi.adv" ){
+      source(paste(path, "grafici6m.R", sep=""))
+      with(mydataAA, points(months, weight, type="l", col="red", lwd=2))
+      source(paste(path, "grafici7m.R", sep=""))
+      with(mydataAA, points(months, stature, type="l", col="red", lwd=2))
+      source(paste(path, "grafici8m.R", sep=""))
+      with(mydataAA, points(months, weight / (stature*stature/10000), type="l", col="red", lwd=2))
+    }
+  }
+  
+  mtext(
+    substitute(paste(bolditalic("Name: "), name), list(name=name)), side=1, outer=T, adj=0, line=-2)
+  mtext(
+    substitute(paste(bolditalic("Surname: "), surname), list(surname=surname)), side=1, outer=T, line=-2)
+  mtext(
+    substitute(paste(bolditalic("Birth Date: "), birth_date), list(birth_date=birth_date)), side=1, outer=T, adj=1, line=-2)
+  
+  points(mydataAA, type="l", col="red", lwd=2)
+  
+}
