@@ -1,7 +1,7 @@
 # summarise daily data
-daysum_fun <- function(dat){
+daysum_fun <- function(dlydat){
   
-  out <- dat %>%
+  out <- dlydat %>%
     rowwise() %>% 
     mutate(
       Date = as.Date(DateTime, tz = 'EST'), 
@@ -22,9 +22,9 @@ daysum_fun <- function(dat){
 }
 
 # tabulate daily summaries
-daysum_tab <- function(dat){
+daysum_tab <- function(dlydat){
   
-  totab <- daysum_fun(dat)
+  totab <- daysum_fun(dlydat)
   
   out <- reactable(
     totab,
@@ -45,9 +45,9 @@ daysum_tab <- function(dat){
 }
 
 # tabulate total summaries
-totsum_tab <- function(dat){
+totsum_tab <- function(dlydat){
   
-  totab <- daysum_fun(dat) %>% 
+  totab <- daysum_fun(dlydat) %>% 
     summarise(
       totdy = length(unique(Date)), 
       nfeed = sum(nfeed),
@@ -78,9 +78,9 @@ totsum_tab <- function(dat){
 }
 
 # feed summary plot
-fdsum_plo <- function(dat){
+fdsum_plo <- function(dlydat){
   
-  hrsum <- dat %>%
+  hrsum <- dlydat %>%
     mutate(
       Date = as.Date(DateTime, tz = 'EST'), 
       hr = hour(DateTime)
@@ -115,9 +115,9 @@ fdsum_plo <- function(dat){
 }
 
 # change summary plot
-chsum_plo <- function(dat){
+chsum_plo <- function(dlydat){
   
-  hrsum <- dat %>%
+  hrsum <- dlydat %>%
     filter(!(is.na(W) & is.na(S))) %>% 
     rowwise() %>% 
     mutate(
@@ -167,7 +167,7 @@ chsum_plo <- function(dat){
 
 MygrowthFun <- function( sex=c("m", "f"), 
                          type=c("wac36", "lac36", "wlc", "hac", "wsc", "wac20", "lac20", "bac", "bmi.adv"), 
-                         path="./Growth/",
+                         path= here("Growth"),
                          name = NULL,
                          surname = NULL,
                          birth_date = NULL,
@@ -175,14 +175,14 @@ MygrowthFun <- function( sex=c("m", "f"),
   
   if( sex == "m" ) {
     switch(type,
-           "wac36"	= source(paste(path, "grafici1m.R", sep="")),
-           "lac36"	= source(paste(path, "grafici2m.R", sep="")),
-           "wlc"	= source(paste(path, "grafici3m.R", sep="")),
-           "hac"	= source(paste(path, "grafici4m.R", sep="")),
-           "wsc"	= source(paste(path, "grafici5m.R", sep="")),
-           "wac20"	= source(paste(path, "grafici6m.R", sep="")),
-           "lac20"	= source(paste(path, "grafici7m.R", sep="")),
-           "bac"	= source(paste(path, "grafici8m.R", sep=""))
+           "wac36"	= source(paste(path, "grafici1m.R", sep="/")),
+           "lac36"	= source(paste(path, "grafici2m.R", sep="/")),
+           "wlc"	= source(paste(path, "grafici3m.R", sep="/")),
+           "hac"	= source(paste(path, "grafici4m.R", sep="/")),
+           "wsc"	= source(paste(path, "grafici5m.R", sep="/")),
+           "wac20"	= source(paste(path, "grafici6m.R", sep="/")),
+           "lac20"	= source(paste(path, "grafici7m.R", sep="/")),
+           "bac"	= source(paste(path, "grafici8m.R", sep="/"))
     )
     if( type == "bmi.adv" ){
       source(paste(path, "grafici6m.R", sep=""))
@@ -195,14 +195,14 @@ MygrowthFun <- function( sex=c("m", "f"),
   }
   if( sex == "f" ) {
     switch(type,
-           "wac36"	= source(paste(path, "grafici1f.R", sep="")),
-           "lac36"	= source(paste(path, "grafici2f.R", sep="")),
-           "wlc"	= source(paste(path, "grafici3f.R", sep="")),
-           "hac"	= source(paste(path, "grafici4f.R", sep="")),
-           "wsc"	= source(paste(path, "grafici5f.R", sep="")),
-           "wac20"	= source(paste(path, "grafici6f.R", sep="")),
-           "lac20"	= source(paste(path, "grafici7f.R", sep="")),
-           "bac"	= source(paste(path, "grafici8f.R", sep=""))
+           "wac36"	= source(paste(path, "grafici1f.R", sep="/")),
+           "lac36"	= source(paste(path, "grafici2f.R", sep="/")),
+           "wlc"	= source(paste(path, "grafici3f.R", sep="/")),
+           "hac"	= source(paste(path, "grafici4f.R", sep="/")),
+           "wsc"	= source(paste(path, "grafici5f.R", sep="/")),
+           "wac20"	= source(paste(path, "grafici6f.R", sep="/")),
+           "lac20"	= source(paste(path, "grafici7f.R", sep="/")),
+           "bac"	= source(paste(path, "grafici8f.R", sep="/"))
     )
     if( type == "bmi.adv" ){
       source(paste(path, "grafici6m.R", sep=""))
@@ -215,11 +215,11 @@ MygrowthFun <- function( sex=c("m", "f"),
   }
   
   mtext(
-    substitute(paste(bolditalic("Name: "), name), list(name=name)), side=1, outer=T, adj=0, line=-2)
+    substitute(paste(bolditalic("Name: "), name), list(name=name)), side=1, outer=T, adj=0, line=-1)
   mtext(
-    substitute(paste(bolditalic("Surname: "), surname), list(surname=surname)), side=1, outer=T, line=-2)
+    substitute(paste(bolditalic("Surname: "), surname), list(surname=surname)), side=1, outer=T, line=-1)
   mtext(
-    substitute(paste(bolditalic("Birth Date: "), birth_date), list(birth_date=birth_date)), side=1, outer=T, adj=1, line=-2)
+    substitute(paste(bolditalic("Birth Date: "), birth_date), list(birth_date=birth_date)), side=1, outer=T, adj=1, line=-1)
   
   points(mydataAA, type="l", col="red", lwd=2)
   

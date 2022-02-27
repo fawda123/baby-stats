@@ -4,7 +4,7 @@
 
 #	load data
 #	F
-ccF <- get(load("./Growth/data/mydata4f.rda"))
+ccF <- get(load(here("Growth/data/mydata4f.rda")))
 
 #	create dataframe for F with numeric
 mydataF <- ccF

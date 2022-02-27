@@ -4,7 +4,7 @@
 
 #	load data
 #	M
-ccM <- get(load("./Growth/data/mydata2m.rda"))
+ccM <- get(load(here("Growth/data/mydata2m.rda")))
 
 #	create dataframe for M with numeric
 mydataM <- ccM

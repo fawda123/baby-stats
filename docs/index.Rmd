@@ -17,36 +17,53 @@ opts_chunk$set(warning = FALSE, message = FALSE, echo = F)
 
 source(here('R/funcs.R'))
 
-load(file = here('data/dat.RData'))
+load(file = here('data/dlydat.RData'))
+load(file = here('data/wgtdat.RData'))
+load(file = here('data/lendat.RData'))
 
 blddt <- Sys.time()
 blddt <- with_tz(blddt, tzone = 'EST')
 ```
 
-These summaries show results to date for feeding and diaper change logs for JLB, born Feb. 17th, 2022 at 7:25 PM (Eastern Standard Time).  The results are updated automatically every 24 hours. Source data are available [here](https://docs.google.com/spreadsheets/d/1TOIquQt2WtM1FpQjc1uKp1GRdbYxen0zD9g78gYcmV8/edit?usp=sharing) and the source repository is available [here](https://github.com/fawda123/baby-stats).  
+The first tab shows results to date for feeding and diaper change logs for JLB, born Feb. 17th, 2022 at 7:25 PM (Eastern Standard Time).  The results are updated automatically every 24 hours. The second tab shows weight and length at age charts up to 36 months. Source data are available [here](https://docs.google.com/spreadsheets/d/1TOIquQt2WtM1FpQjc1uKp1GRdbYxen0zD9g78gYcmV8/edit?usp=sharing) and the source repository is available [here](https://github.com/fawda123/baby-stats).  
 
 Last report build: `r blddt` EST
 
-## Daily summaries
+# {.tabset .tabset-pills}
+
+## Feeding and diaper changes 
+
+### Daily summaries
 
 ```{r}
-daysum_tab(dat)
+daysum_tab(dlydat)
 ```
 
-## Totals to date 
+### Totals to date 
 
 ```{r}
-totsum_tab(dat)
+totsum_tab(dlydat)
 ```
 
-## Feedings by hour and duration
+### Feedings by hour and duration
 
 ```{r}
-fdsum_plo(dat)
+fdsum_plo(dlydat)
 ```
 
-## Changes by hour
+### Changes by hour
 
 ```{r}
-chsum_plo(dat)
+chsum_plo(dlydat)
 ```
+
+## Growth charts
+
+```{r, fig.height = 8, fig.width = 8}
+MygrowthFun(sex = "m", type = "wac36", name = "Jack", surname = "Beck", birth_date = "Feb. 17th, 2022", mydataAA = wgtdat)
+```
+
+```{r, fig.height = 8, fig.width = 8}
+MygrowthFun(sex = "m", type = "lac36", name = "Jack", surname = "Beck", birth_date = "Feb. 17th, 2022", mydataAA = lendat)
+```
+
