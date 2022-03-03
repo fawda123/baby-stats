@@ -24,7 +24,8 @@ daysum_fun <- function(dlydat){
 # tabulate daily summaries
 daysum_tab <- function(dlydat){
   
-  totab <- daysum_fun(dlydat)
+  totab <- daysum_fun(dlydat) %>% 
+    arrange(desc(Date))
   
   out <- reactable(
     totab,
