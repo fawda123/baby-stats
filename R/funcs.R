@@ -91,7 +91,13 @@ fdsum_plo <- function(dlydat){
       `Length (min)` = sum(`Length (min)`, na.rm = T), 
       .groups = 'drop'
     ) %>% 
-    complete(Date, hr, fill = list(`Length (min)` = NA))
+    complete(Date, hr, fill = list(`Length (min)` = NA)) %>% 
+    mutate(
+      `Length (min)` = case_when(
+        `Length (min)` == 0 ~ NA_real_, 
+        T ~ `Length (min)`
+      )
+    )
   
   p <- ggplot(hrsum, aes(x = Date, y = hr, fill = `Length (min)`)) +
     geom_tile(color = 'black') +
