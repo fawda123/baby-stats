@@ -98,7 +98,7 @@ fdsum_plo <- function(dlydat){
         T ~ `Length (min)`
       )
     )
-  
+
   p <- ggplot(hrsum, aes(x = Date, y = hr, fill = `Length (min)`)) +
     geom_tile(color = 'black') +
     scale_fill_distiller(palette = 'Greens', direction = 2, na.value = 'lightgrey') + 
@@ -112,7 +112,8 @@ fdsum_plo <- function(dlydat){
     theme(
       legend.position = 'top', 
       panel.grid.minor = element_blank(), 
-      panel.grid.major = element_blank()
+      panel.grid.major = element_blank(), 
+      axis.text.x = element_text(size = 7, angle = 90, hjust = 1)
     )
   
   out <- ggplotly(p, width = 900)
@@ -151,7 +152,8 @@ chsum_plo <- function(dlydat){
     theme(
       legend.position = 'top', 
       panel.grid.minor = element_blank(), 
-      panel.grid.major = element_blank()
+      panel.grid.major = element_blank(), 
+      axis.text.x = element_text(size = 7, angle = 90, hjust = 1)
     )
   
   out <- ggplotly(p, width = 900)
