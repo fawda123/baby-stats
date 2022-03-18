@@ -27,9 +27,9 @@ save(dlydat, file = here('data/dlydat.RData'))
 
 # manually entered weight data
 wgtdat <- data.frame(
-  date = ymd(c('2022-02-17', '2022-02-22', '2022-03-04')),
-  weight_lb = c(6, 6, 6),
-  weight_oz = c(13, 10, 12.5)
+  date = ymd(c('2022-02-17', '2022-02-22', '2022-03-04', '2022-03-18')),
+  weight_lb = c(6, 6, 6, 9),
+  weight_oz = c(13, 10, 12.5, 1.6)
 ) %>% 
   mutate(
     months = as.numeric((date - min(date)) / 31),
