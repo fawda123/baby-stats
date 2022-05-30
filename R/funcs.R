@@ -103,7 +103,7 @@ fdsum_plo <- function(dlydat){
     geom_tile(color = 'black') +
     scale_fill_distiller(palette = 'Greens', direction = 2, na.value = 'lightgrey') + 
     scale_y_reverse(expand = c(0,0), breaks = c(0:23)) + 
-    scale_x_date(expand = c(0, 0), date_breaks = 'day', date_labels = '%m-%d') + 
+    scale_x_date(expand = c(0, 0), date_breaks = 'week', date_labels = '%m-%d') + 
     labs(
       y = 'Hour of day', 
       x = NULL
@@ -113,7 +113,7 @@ fdsum_plo <- function(dlydat){
       legend.position = 'top', 
       panel.grid.minor = element_blank(), 
       panel.grid.major = element_blank(), 
-      axis.text.x = element_text(size = 7, angle = 90, hjust = 1)
+      axis.text.x = element_text(size = 9, angle = 45, hjust = 1)
     )
   
   out <- ggplotly(p, width = 900)
@@ -142,7 +142,7 @@ chsum_plo <- function(dlydat){
     geom_tile() +
     scale_fill_manual(values = c('white', 'darkblue')) +
     scale_y_discrete(expand = c(0,0)) + 
-    scale_x_date(expand = c(0, 0), date_breaks = 'day', date_labels = '%m-%d') + 
+    scale_x_date(expand = c(0, 0), date_breaks = 'week', date_labels = '%m-%d') + 
     labs(
       y = 'Hour of day', 
       x = NULL, 
@@ -153,7 +153,7 @@ chsum_plo <- function(dlydat){
       legend.position = 'top', 
       panel.grid.minor = element_blank(), 
       panel.grid.major = element_blank(), 
-      axis.text.x = element_text(size = 7, angle = 90, hjust = 1)
+      axis.text.x = element_text(size = 9, angle = 45, hjust = 1)
     )
   
   out <- ggplotly(p, width = 900)
