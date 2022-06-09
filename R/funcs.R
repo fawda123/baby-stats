@@ -140,7 +140,7 @@ chsum_plo <- function(dlydat){
   
   p <- ggplot(hrsum, aes(x = Date, y = hr, fill = chg)) +
     geom_tile() +
-    scale_fill_manual(values = c('white', 'darkblue')) +
+    scale_fill_manual(values = c('white', 'chocolate4')) +
     scale_y_discrete(expand = c(0,0)) + 
     scale_x_date(expand = c(0, 0), date_breaks = 'week', date_labels = '%m-%d') + 
     labs(
