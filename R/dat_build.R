@@ -27,9 +27,9 @@ save(dlydat, file = here('data/dlydat.RData'))
 
 # manually entered weight data
 wgtdat <- data.frame(
-  date = ymd(c('2022-02-17', '2022-02-22', '2022-03-04', '2022-03-18', '2022-04-18', '2022-06-20')),
-  weight_lb = c(6, 6, 6, 9, 11, 14),
-  weight_oz = c(13, 10, 12.5, 1.6, 10.5, 11.5)
+  date = ymd(c('2022-02-17', '2022-02-22', '2022-03-04', '2022-03-18', '2022-04-18', '2022-06-20', '2022-08-26')),
+  weight_lb = c(6, 6, 6, 9, 11, 14, 17),
+  weight_oz = c(13, 10, 12.5, 1.6, 10.5, 11.5, 13.5)
 ) %>% 
   mutate(
     months = as.numeric((date - min(date)) / 31),
@@ -43,8 +43,8 @@ save(wgtdat, file = here('data/wgtdat.RData'))
 
 # manually entered length data
 lendat <- data.frame(
-    date = ymd(c('2022-02-17', '2022-03-04', '2022-04-18', '2022-06-20')),
-    length_in = c(19.8, 20, 22.7, 25)
+    date = ymd(c('2022-02-17', '2022-03-04', '2022-04-18', '2022-06-20', '2022-08-26')),
+    length_in = c(19.8, 20, 22.7, 25, 28.5)
   ) %>% 
   mutate(
     months = as.numeric((date - min(date)) / 31),
